@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="images">
+    <file>settings-icon.png</file>
+    <file>down-arrow.png</file>
+    <file>search-icon.png</file>
+  </qresource>
+</RCC>
