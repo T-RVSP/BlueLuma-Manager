@@ -1,67 +1,148 @@
 # BlueLuma-Manager
-An app to manage the Steam unlocker "GreenLuma 2024" AppList folder
 
-This is a fork of ImaniiTy's GreenLuma Reborn Manager to better support GL2024  
-Handles portable GL2024 (not in Steam folder)  
-Better searching  
-Improved error handling  
-Other bugfixes and improvements
+Une application pour gérer le dossier AppList du déverrouilleur Steam « BlueLuma »
 
-## Latest release: **[GreenLuma 2024 Manager](https://github.com/BlueAmulet/GreenLuma-2024-Manager/releases/latest)**
-Below text is mostly sourced from ImaniiTy's README
+Il s’agit d’un Remake de GreenLuma Manager afin de mieux prendre en charge :
 
-## What is [GreenLuma 2024](https://cs.rin.ru/forum/viewtopic.php?f=29&t=103709)?
-GreenLuma 2024 (GL2024) is a Steam unlocker made by Steam006 that is used to obtain games from family shared libraries and DLC for games. There's much more to it, though.
+- Une interface sombre moderne entièrement en **français**
+- Les **comptes Steam enregistrés** comme profils (pseudo automatique)
+- L’**import automatique** des jeux et DLC installés
+- La **génération automatique de l’AppList** (sans bouton manuel)
+- Un **éditeur manuel** pour les jeux / DLC non détectés
+- L’installation de BlueLuma dans **`GLinject/`** via ZIP cs.rin.ru
+- Le **downgrade et la restauration** de Steam depuis les paramètres
+- Les **mises à jour** via le dépôt GitHub T-RVSP
 
-The full list of features provided by Steam006.
+**Développé par [ShyninG](https://github.com/T-RVSP)** — Version **1.0.1**
 
-![alt text](https://imgur.com/zdCclTP.png)
+---
 
-## Can I get banned for using GreenLuma 2024?
-There will always be a risk when using GL2024. If you're willing to take that risk, go right on ahead. If not, then don't bother. Especially when that risk means the status of your Steam account.
+## Dernière version : **[BlueLuma Manager](https://github.com/T-RVSP/BlueLuma-Manager/releases)**
 
-As expected, there are some games that blacklist GL2024 and using it will result in receiving a game ban.  
-Some games will check for GreenLuma's files or the manager's files in the Steam folder.  
-Some games have server side game and DLC ownership checks.
+---
 
-Please keep in mind. Like CreamAPI, GreenLuma 2024 **does not** work for every game.  
-Also, keep in mind that not **every game** is available to play through Steam family sharing.
+## Installation
 
-#### Credits to [@linkthehylian](https://github.com/linkthehylian) for this brief explanation
+```bash
+pip install -r requirements.txt
+python main.py
+```
 
-I **highly advise** you to use the "Legit stealth mode" checking the box "NoHook" on my program:
-![alt text](https://i.imgur.com/xpAXU1b.png)
+---
 
-## Features
-  * Easily manage profiles for various games (good to circumvent the 168 id limit)
-    * Add/Remove 1 or more games at once
-    * Add/Remove profiles
-  * Search for any game you want to add direct from the app
-    * Search results are directly from Steam
-    * Sort the results by Type (DLC, Game, etc..) or Name
-  * Generate the AppList, close Steam and run GreenLuma 2024 in one click
-    * You can choose any GL2024 parameters before launch
-    * It will detect whether Steam is open or not and close it if necessary
-  * All the profiles info are in JSON files so you can easily share with anyone
-    * The profiles are saved on: C:\Users\YOUR_USER\AppData\Local\GLR_Manager\Profiles
+## Qu’est-ce que BlueLuma ?
 
-![alt text](https://i.imgur.com/B8nDYm3.png)
+BlueLuma est un déverrouilleur Steam créé par **ShyninG** permettant d’obtenir des jeux via les bibliothèques partagées en famille ainsi que des DLC pour les jeux.  
+Il offre cependant bien plus de fonctionnalités.
 
-## Future Plans
-* Work on the UI
-* Add a way to load previous games on your AppList folder
-* Load all DLC for a game instead of the first 64
-* Better error handling
-* Warnings if GL2024 or the manager are in the Steam folder
-* Handling elevated permissions as necessary
+**BlueLuma Manager** est l’interface graphique qui prépare le dossier `AppList`, gère vos jeux par compte Steam et lance l’injecteur depuis le dossier local `GLinject/`.
 
-## Built With
-* [PyQt5](https://www.riverbankcomputing.com/software/pyqt/intro) - The GUI framework
-* [PyInstaller](https://pyinstaller.readthedocs.io/en/stable/index.html) - Used to make the standalone executable
+Téléchargement du moteur GreenLuma (requis séparément) : [cs.rin.ru — topic 103709](https://cs.rin.ru/forum/viewtopic.php?f=29&t=103709)
 
-## Authors
-[**ImaniiTy**](https://github.com/ImaniiTy):
+### Liste complète des fonctionnalités fournies par ShyninG
 
-![alt text](https://i.imgur.com/zmS7oBs.gif)
+- Gestionnaire graphique **BlueLuma Manager** (PyQt5)
+- Synchronisation des profils avec les comptes Steam mémorisés (`loginusers.vdf`)
+- Affichage du **pseudo Steam** dans le sélecteur « Compte Steam »
+- Import automatique de la bibliothèque Steam installée + DLC au démarrage
+- Liste **Jeux/DLC Actif** par compte
+- **AppList synchronisée automatiquement** à chaque ajout, suppression ou changement de compte
+- Éditeur manuel (ID, nom, type Game/DLC) avec bouton **Activer**
+- Boutons **Lancer** (BlueLuma) et **Retirer** (jeu du profil)
+- Dossier **`GLinject/`** auto-créé à la racine de l’app
+- Installation assistée si `DLLInjector.exe` est absent (ZIP + mot de passe `cs.rin.ru`)
+- Détection automatique du chemin Steam
+- Paramètres : chemins, downgrade Steam (Wayback Machine), restauration (`steam.cfg`)
+- Mises à jour optionnelles au démarrage via **BlueLuma Updater.exe**
+- Profils sauvegardés en JSON (`%LOCALAPPDATA%/GLR_Manager/Profiles/`)
 
-[**BlueAmulet**](https://github.com/BlueAmulet): This fork
+---
+
+## Fonctionnalités
+
+### Interface
+- Thème sombre moderne, layouts responsifs
+- Interface 100 % en français
+- Paramètres accessibles via l’icône engrenage (à droite de l’éditeur)
+
+### Comptes Steam
+- Un profil = un compte Steam enregistré sur la machine
+- Renommage automatique si le pseudo Steam change
+- Conservation des jeux/DLC par compte (fichier `{steam_id}.json`)
+
+### Jeux / DLC actifs
+- Panneau droit : liste des jeux et DLC du compte sélectionné
+- Suppression avec **Retirer** (bouton rouge)
+- Lancement de BlueLuma avec **Lancer** (ferme Steam si nécessaire, puis `DLLInjector.exe`)
+- Limite technique : **168 entrées** maximum par AppList
+
+### Éditeur central
+- Tableau vide au démarrage — ajout de lignes via **+**
+- Colonnes : ID Steam, nom, type (Game / DLC)
+- **Activer** : ajoute les entrées valides au profil actif
+
+### GLinject / BlueLuma
+- Chemin actif : `GLinject/NormalMode/`
+- AppList générée dans `GLinject/NormalMode/AppList/`
+- Mode furtif retiré — utilisation du mode normal uniquement
+
+### Données locales
+
+| Élément | Emplacement |
+|--------|-------------|
+| Configuration | `%LOCALAPPDATA%/GLR_Manager/config.json` |
+| Profils | `%LOCALAPPDATA%/GLR_Manager/Profiles/` |
+| AppList | `GLinject/NormalMode/AppList/` |
+| Logs | `errors.log` |
+
+---
+
+## Puis-je être banni pour avoir utilisé BlueLuma ?
+
+Il y aura toujours un risque en l'utilisant.  
+Si vous êtes prêt à prendre ce risque, libre à vous de continuer.  
+Sinon, mieux vaut éviter — surtout lorsque cela peut affecter le statut de votre compte Steam.
+
+Comme prévu, certains jeux blacklistent BlueLuma et son utilisation peut entraîner un bannissement du jeu.  
+Certains jeux vérifient la présence des fichiers de BlueLuma ou du gestionnaire dans le dossier Steam.  
+D’autres effectuent des vérifications côté serveur concernant la possession des jeux et DLC.
+
+Gardez également à l’esprit que, comme CreamAPI, BlueLuma **ne fonctionne pas** avec tous les jeux.  
+De plus, tous les jeux ne sont pas forcément jouables via le partage familial Steam.
+
+---
+
+## Projets futurs
+
+- Icône et assets visuels BlueLuma (remplacer les ressources GreenLuma restantes)
+- Recherche Steam intégrée depuis l’éditeur (sans quitter l’app)
+- Avertissement si BlueLuma ou le manager sont placés dans le dossier Steam
+- Chargement des jeux déjà présents dans un dossier AppList existant
+- Import de tous les DLC d’un jeu (au-delà de certaines limites API)
+- Packaging `.exe` avec PyInstaller + release automatique GitHub Actions
+- Documentation utilisateur et captures d’écran à jour
+
+---
+
+## Construit avec
+
+* [PyQt5](https://www.riverbankcomputing.com/software/pyqt/intro) — Framework d’interface graphique
+* [PyInstaller](https://pyinstaller.readthedocs.io/en/stable/index.html) — Utilisé pour créer l’exécutable autonome
+* Python 3 — Logique métier, Steam, profils, AppList
+* C# (`GLMUpdater/`) — Mises à jour automatiques
+
+---
+
+## Crédits
+
+| Auteur | Rôle |
+|--------|------|
+| **[ShyninG](https://github.com/T-RVSP)** | BlueLuma Manager — développement principal |
+| **[BlueAmulet](https://github.com/BlueAmulet)** | Fork GreenLuma 2024 Manager |
+| **[ImaniiTy](https://github.com/ImaniiTy)** | GreenLuma Reborn Manager (original) |
+| **Steam006** | GreenLuma (moteur sous-jacent) |
+
+## Licence
+
+Voir le fichier [LICENSE](LICENSE).
+```
